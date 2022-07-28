@@ -1,0 +1,399 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\usepackage{qtree}
+\usepackage{slashed}
+\usepackage{upgreek}
+\usepackage{xfrac}
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\section{Matrizes}
+
+\subsection{Matriz}
+
+Uma matriz $A, m \times n( m$ por $n$) é uma tabela de $mn$ números dispostos em $m$ linhas e $n$ colunas
+
+\begin{equation*}
+    A_{m,n} = 
+    \begin{bmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots  & \vdots  & \ddots & \vdots  \\
+    a_{m1} & a_{m2} & \cdots & a_{mn} 
+    \end{bmatrix}
+\end{equation*}
+
+A $i-$\textbf{ésima  linha }de A é 
+
+\begin{equation*}
+    \begin{bmatrix}
+        a_{i1} & a_{i2} & \cdots & a_{in} \\
+    \end{bmatrix}
+\end{equation*}
+
+A $j-$\textbf{ésima coluna} de A é 
+
+\begin{equation*}
+    \begin{bmatrix}
+        a_{1j} \\
+        a_{2j} \\
+        \vdots \\
+        a_{mj} 
+    \end{bmatrix}
+\end{equation*}
+
+Se $m = n$ \bigbreak
+dizemos que A é uma \textbf{matriz quadrada de ordem} $n$ e os elementos \newline
+\begin{center}
+    $ a_{11}, a_{22}, \hdots a_{nn}$
+\end{center}
+formam a \textbf{diagonal (princinpal)} de $A$.
+
+\subsection{Exemplos}
+
+\begin{equation*}
+    A_{2 \times 2} = 
+    \begin{bmatrix}
+    1 & 2 \\
+    3 & 4 \\
+    \end{bmatrix}
+\end{equation*}
+$$ a_{12} = 2$$ $$ [A]_{22} = 4$$
+\newline
+\begin{equation*}
+    B_{2 \times 2} = 
+    \begin{bmatrix}
+    2- & 1 \\
+    0 & 3 \\
+    \end{bmatrix}
+\end{equation*}
+\newline
+\begin{equation*}
+    C_{2\times3} = 
+    \begin{bmatrix}
+    1 & 3 & 0 \\
+    2 & 4 & -2 \\
+    \end{bmatrix}
+\end{equation*}
+$$c_{23} = -2 $$
+\newline
+\begin{equation*}
+D_{1 \times 3} = 
+    \begin{bmatrix}
+    1 & 3 & -2 \\
+    \end{bmatrix}
+\end{equation*}
+$$[D]_{12} = -3 $$
+\begin{center}
+    \textbf{matriz linha} 
+\end{center}
+
+
+\begin{equation*}
+E_{1 \times 3} = 
+    \begin{bmatrix}
+    1 \\
+    4 \\
+    -3 \\
+    \end{bmatrix}
+\end{equation*}
+$$ e_{21} = 4$$
+\begin{center}
+    \textbf{matriz coluna} 
+\end{center}
+
+\begin{equation*}
+    F_{1 \times 1} = 
+        \begin{bmatrix}
+        3 \\
+        \end{bmatrix}
+\end{equation*}
+\newline
+
+$ A = (a_{ij})_{m \times n} $\ e \ $ B = (b_{ij})_{p \times q} $ são \textbf{iguais} se: \newline
+\begin{center}
+    $$ m = p $$
+    $$ n = q $$
+    $$ a_{ij} = b_{ij} $$
+\end{center}
+
+\subsection{Soma de Matrizes}
+\subsubsection{Definição}
+ A \textbf{soma} de dias matrizes de \textbf{mesmo tamanho} $A = (a_{ij})_{m \times n}$
+ é definida como sendo a matriz $m \ x \ n$.
+ $$C = A + B$$
+ obtida somando-se os elementos correspondes de $A$ e $B$, ou seja \bigbreak
+ $ c_{ij} = a_{ij} + b_{ij}$, \bigbreak
+ para $ i = 1, \hdots, m $ e $j = 1, \hdots, n $. Escrevemos também $[A + B]_{ij} = a_{ij} + b_{ij}$.
+
+\subsubsection{Exemplo}
+Considere as matrizes:
+
+\begin{equation}
+    A = 
+    \begin{bmatrix}
+    1 & 2 & -3 \\
+    3 & 4 & 0 \\
+    \end{bmatrix}, \
+    B = 
+    \begin{bmatrix}
+    -2 & 1 & 5 \\
+    0 & 3 & -4 \\
+    \end{bmatrix}
+\end{equation}
+ Se chamamos de $C$ a soma das duas matrizes $A$ e $B$, então :
+ \begin{equation}
+    C = A + B = 
+    \begin{bmatrix}
+        1 + (-2) & 2+1 & -3+5 \\
+        3+0 & 4+3 & 0+(-4)
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        -1 & 3 & 2 \\
+        3 & 7 & -4 \\
+    \end{bmatrix}
+ \end{equation}
+
+ \section{Multiplicação de Matrizes}
+\subsubsection{Definição}
+ A \textbf{multiplicação de uma matriz} $A = (a_{ij})_{m \times n}$ \textbf{por um escalar} (número) $\alpha$ é definida pela matriz $m \times n$
+ $$B = \alpha A$$
+ obtida multiplicando-se cada elemento da matriz $A$ pelo escalar $\alpha $, ou seja,
+ $$b_{ij} = \alpha a_{ij}$$
+
+ \subsubsection{Exemplo}
+
+ O produto da matriz $ A = 
+ \begin{bmatrix}
+    -2 & 1 \\
+    0 & 3 \\
+    5 & 4 \\
+ \end{bmatrix}$
+ pelo escalar $-3$ é dado por :
+ $$-3\ A =  \begin{bmatrix}
+    (-3)(-2) & (-3)(1) \\
+    (-3)0 & (-3)3 \\
+    (-3)5 & (-3)(-4) \\
+ \end{bmatrix}
+ =
+ \begin{bmatrix}
+    6 & -3 \\
+    0 & 9 \\
+    -15 & 12
+\end{bmatrix}
+.
+ $$
+
+ \subsubsection{Definição}
+ O produto de duas matrizes, tais que o \textbf{o número de colunas da primeira matriz é igual ao número de linhas da segunda},
+ $ A = (a_{ij})_{m \times p}$ e $B = (b_{ij})_{p \times n}$ é definido pela matriz $m \times n$
+
+$$C = AB$$
+obtida da seguinte forma:
+
+$$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \hdots + a_{ip}b_{pj}$$
+
+para $i = 1, \hdots, m$ e $j = 1, \hdots, n$. Escrevemos tambem $[AB]_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \hdots + a_{ip}b_{pj}$
+\begin{equation}
+    \begin{bmatrix}
+        c_{11} & \hdots & c_{1n} \\
+        \vdots & c_{ij} & \vdots \\
+        c_{m1} & \hdots & c_{mn} \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        a_{11} & a_{12} & \hdots & a_{1p} \\
+        \vdots & & \hdots & \vdots \\
+        a_{i1} & a_{i2} & \hdots & a_{ip} \\
+        a_{m1} & a_{m2} & \hdots & a_{mp} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        b_{11} & \hdots & b_{1j} & \hdots & b_{1n} \\
+        b_{21} & \hdots & b_{2j} & \hdots & b_{2n} \\
+        \vdots & & \hdots & \vdots & \\
+        b_{p1} & \hdots & b_{p2} & \hdots & b_{pn} & \\
+    \end{bmatrix}
+\end{equation}
+
+\subsubsection{Exemplo}
+Considere as matrizes
+\begin{equation*}
+    A = 
+    \begin{bmatrix}
+        1 & 2 & -3 \\
+        3 & 4 & 0 \\
+    \end{bmatrix},
+    B = 
+    \begin{bmatrix}
+        -2 & 1 & 0 \\
+        0 & 3 & 0 \\
+        5 & -4 & 0 \\
+    \end{bmatrix},
+\end{equation*}
+Se chamamos de C o produto das duas matrizes $A$ e $B$, então :
+\begin{equation*}
+    C = AB =
+    \begin{bmatrix}
+        1(-2) +2 \cdot 0 +(-3)5 & 1 \cdot 1 +2 \cdot 3 +(-3)(-4) & 0 \\
+        3(-2) +4 \cdot 0 + 0 \cdot 5 & 3 \cdot 1 + 4 \cdot 3 + 0(-4) & 0 \\
+    \end{bmatrix}
+    =
+    \begin{pmatrix}
+        -17 & 19  & 0 \\
+        -6 & 15 & 0 \\
+    \end{pmatrix}
+\end{equation*}
+
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.8pt}}
+\textbf{Observação.} No exemplo anterior o produto $BA$ não está definido (porque ?). Entretanto, mesmo quando ele está definido,
+    pode não ser igual a AB, ou seja, o produto de matrizes \textbf{não é comutativo}, como mostra o exemplo seguinte
+    \newline
+    \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.8pt}}
+
+
+\subsubsection{Exemplo}
+Sejam $
+    A = 
+    \begin{bmatrix}
+        1 & 2 \\
+        3 & 4 \\
+    \end{bmatrix},$ e $
+    B = 
+    \begin{bmatrix}
+        -2 & 1 \\
+        0 & 3 \\
+    \end{bmatrix}.
+    $ Então, $
+    AB =
+    \begin{bmatrix}
+        -2 & 7 \\
+        -6 & 15 \\
+    \end{bmatrix} 
+    $, e $
+    BA = 
+    \begin{bmatrix}
+        1 & 0 \\
+        9 & 12 \\
+    \end{bmatrix} 
+    $
+
+\section{Transposta}
+    A \textbf{transposta} de uma matriz $A = (A_{ij})_{m \times n}$ é definida pela matriz $m \times n$.
+    $$B = A^t$$ 
+    $$[A^t]_{ij} = a_{ji}$$
+
+    obtida trocando-se as linhas com as colunas, ou seja:
+    $$b_{ij} = a_{ji}$$
+
+
+    \begin{equation*}
+        A = 
+        \begin{bmatrix}
+            1 & 2 \\
+            3 & 4 \\
+        \end{bmatrix} \ \ \ \
+        A^t = 
+        \begin{bmatrix}
+            1 & 3 \\
+            2 & 4 \\
+        \end{bmatrix}
+    \end{equation*}
+    \newline
+    \begin{equation*}
+        C = 
+        \begin{bmatrix}
+            1 & 2 & 0\\
+            3 & 4 & -2\\
+        \end{bmatrix} \ \ \ \
+        C^t = 
+        \begin{bmatrix}
+            1 & 2 \\
+            3 & 4 \\
+            0 & -2 \\
+        \end{bmatrix}
+    \end{equation*}
+
+
+\section{Teoremas}
+Sejam $A$, $B$ e $C$ matrizes com tamanhos apropriados, $\alpha$ e $\beta$ escalares. São 
+válidas as seuintes propriedades para as operações matriciais
+\begin{enumerate}[label=(\alph*)]
+    \item (Comutatividade) $A + B = B + A$;
+    \item (Associatividade) $A + (B + C) = (A + B) + C$;
+    \item (Elemento Neutro) A matriz $\overline{0}$ definida por $[\overline{0}]_{ij} = 0$, para $ i = 1,\hdots ,m \ ,j = 1,\hdots ,n$ é tal que
+    $$ A + \overline{0} = A, $$
+    para toda matriz $A, m \times n$. A matriz $\overline{0}$ é chama de \textbf{matriz nula} $m \times n$
+    \item (Elemento Simétrico) Para cada matriz $A$, existe uma única matriz $-A$, definida por $[-A]_{ij} = -a_{ij}$, tal que 
+    $$ A + (-A) = \overline{0}. \ \ \ \ \ \ \ A -B = A + (-B)$$ ;
+    \item (Associatividade) $\alpha(\beta A) = (\alpha \beta )A$;
+    \item (Distributividade) $(\alpha + \beta)A = \alpha A + \beta B $;
+    \item (Distributividade) $\alpha(A + B) = \alpha A + \beta B $;
+    \item (Associatividade) $A(BC) = (AB)C $; \ \ \ \ \ \ \ \ 
+    $\underbrace{A^P = A \hdots}_{p vezes}$
+    \item (Elemento Neutro) Para cada inteiro positivo $p$ a matriz $p \times p$,
+    $$I_p = 
+    \begin{bmatrix}
+        1 & 0 & \hdots & 0 \\
+        0 & 1 & \hdots & 0 \\
+        \vdots & & \ddots & \vdots \\
+        0 & 0 & \hdots & 1 \\
+    \end{bmatrix}
+    , \ \ \ \ \ \ \ \ \ A^0 = I^n
+    $$
+    chamada \textbf{matriz identidade} é tal que \newline
+    $A i_n = I_mA = A$, para toda matriz $A = (a_{ij})_{m \times n}$.
+    \item (Distributividade) $A(B+C) = AB + AC $ e $(B + C)A = BA + CA$;
+    \item $\alpha(AB) = (\alpha A)B = A(\alpha B)$;
+    \item $(A^t)^t = A$;
+    \item $(A + B)^t = A^t + B^t$;
+    \item $(\alpha A)^t = \alpha A^T$
+    \item $(AB)^t = B^t A^t$;
+
+\end{enumerate}
+
+\section{Matriz Diagonal}
+
+ \textbf{Matriz diagonal} $n \times n$
+ $ D = 
+ \begin{bmatrix}
+    \lambda_1 & 0 & \hdots & 0 \\
+    0 &  \lambda_2 & \hdots & 0 \\
+    \vdots & & \ddots & \vdots \\
+    0 & \hdots & 0 & \lambda_n \\
+\end{bmatrix}
+ $ A é chamada de \textbf{nilpotente} se $A^k = \overline{0}$, para algum inteiro positivo $k$
+$$
+A = \begin{bmatrix}
+    0 & 1 & 0 & \hdots & 0 \\
+    0 & 0 & 1 & \hdots & 0 \\
+    \vdots & \vdots & \ddots & \ddots & \vdots \\
+    0 & 0 & 0 & \hdots & 1 \\
+    0 & 0 & 0 & \hdots & 0 \\
+\end{bmatrix}_{n \times n}
+$$
+
+\section{Matriz Simétrica}
+
+$A, n \times n$, é \textbf{simétrica} se $A^t = A$ e \textbf{anti-simétrica} se $A^t = -A$.
+Se A é simétrica, então $a_{ij} = a_{ji}$ \newline
+Se $A$ e $B$ são simétricas, então $A + B$ e $\alpha A$ são simétrica \newline
+Se A e B são simétricas, então AB é simétrica se, e somente se, $AB = BA$
+
+
+ \end{document}
+
+
+
