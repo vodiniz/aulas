@@ -1,0 +1,249 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{arydshln}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{qtree}
+\usepackage{slashed}
+\usepackage{upgreek}
+\usepackage{xfrac}
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\section{Sobre as Matrizes}
+
+Todo numero real $a$, não nulo possui um inverso ( multiplicativo ), ou seja existe um número $b$,
+ tal que $a\ b = b\ a = 1$. Este número é único e o denotamos por $a^{-1}$. 
+ Apesar da álgebra matricial ser semalhante à álgebra dos números reais, nem todas as matrizes
+  $A$ \textit{não nulas} possuem inversa, ou seja, nem sempre existe uma matriz $B$, tal que $A\ B = B\ A = I_n$.
+  De início, para que os produtos $AB$ e $BA$, estejam definidos e sejam iguais é preciso que 
+  as matrizes $A$ e $B$ sejam quadradas. Portanto, somente as matrizes quadradas podem ter inversa, o que já diferencia
+  do caso dos números reais, pois todo núymero não nulo tem inverso. Mesmo que entre as matrizes quadradas, muitas não possuem inversa, 
+  apesar do conjunto das que não tem inversa ser bem menor do que o conjunto das que tem.
+   
+
+\section{Matriz Inversa}
+\subsection{Definição}
+Uma matriz quadrada $A = (A_{ij})_{n \times m}$ é \textbf{invertivel}, ou \textbf{não singular}, se existe uma matriz
+$B = (b_{ij})_{n \times m}$ tal que
+$$A \ B = B \ A = I_n,$$
+em que $I_n$ é a matriz identidade. A matriz $B$ é chamada de \textbf{inversa} de $A$. Se $A$ não tem inversa,
+ dizemos que $A$ é \textbf{não invertível} ou \textbf{singular}
+\subsection{Exemplo}
+Considere as matrizes \bigbreak
+$
+  A = 
+  \begin{bmatrix}
+    -2 & 1 \\
+    0 & 3 \\ 
+  \end{bmatrix}
+$ e 
+$
+B = 
+\begin{bmatrix}
+\frac{-1}{2} & \frac{1}{6} \\
+0 & \frac{1}{3}
+\end{bmatrix}
+$
+\bigbreak
+A matriz $B$ é a inversa da matriz A, pois $A \ B = B \ A = I_2$
+
+\bigbreak
+
+$A \dot B = 
+\begin{bmatrix}
+  1 & 0 \\
+  0 & 1 \\
+\end{bmatrix}$
+
+\subsubsection{Teorema}
+Sejam $A$ e $B$ matrizes $n \times n$.
+\begin{enumerate}[label=(\alph*)]
+  \item Se $BA = I_n$, então $AB = I_n$
+  \item Se $AB = I_n$, então $BA = I_n$ 
+\end{enumerate}
+
+\section{Teoremas}
+\subsection{}
+Se a matriz $A = (a_{ij})_{n \times n}$ possui inversa, então a inversa é única
+\subsection{}
+\begin{enumerate}[label=(\alph*)]
+  \item Se A é invertivel, então $A^{-1}$ tambem o é e 
+  $$(A^{-1})^{-1} = A;$$
+  \item Se $A = (a_{ij})_{n \times n}$ e $B = (b_{ij})_{n \times n}$ são matizes invertíveis, então $AB$ é invertivel e 
+  $$(AB)^{-1} = B^{-1}A^{-1};$$
+  \item Se $A = (a_{ij})_{n \times n}$ é invertivel, então $A^t$ tambem é invertível e 
+  $$(A^t)^{-1} = (A^-1)^t$$ 
+\end{enumerate}
+
+\section{Operação Elementar sobre as linhas}
+\subsection{Definição}
+Uma \textbf{operação elementar sobre as linhas} de uma matriz é uma das seguintes operações;
+\begin{enumerate}[label=(\alph*)]
+  \item Trocar a posição de duas linhas da matriz;
+  \item Multiplicar uma linha da matriz por um escalar diferente de zero;
+  \item Somar a uma linha da matriz um múltiplo escalar de outra linha.
+\end{enumerate} 
+\subsection{Definição}
+Uma matriz $A = (a_{ij})_{m \times n}$ \textbf{é equivalente por linhas} a uma matriz $B = (b_{ij})_{m \times n}$, se $B$ pode ser 
+obtida de $A$ aplicando-se uma sequencia de operações elementares sobre as suas linhas.
+
+\subsection{Teorema}
+Seja $A$ uma matriz $n \times n$. As seguintes afirmações são equivalentes:
+\begin{enumerate}[label=(\alph*)]
+  \item Existe uma matriz $B, n \times n$ tal que $BA = I_n$
+  \item A matriz $A$ é equivalente por linhas à matriz identidade $I_n$
+  \item A matriz $A$ é invertível.
+\end{enumerate}
+
+\subsection{Exemplo}
+Vamos encontrar, se existir a inversa de 
+$$A = 
+\begin{bmatrix}
+  1 & 1 & 1 \\
+  2 & 1 & 4 \\
+  2 & 3 & 5 \\
+\end{bmatrix}$$
+\subsubsection*{1ª Eliminação}
+-2x1ª linha + 2ª linha $\longrightarrow $ 2ª linha \newline
+-2x1ª linha + 3ª linha $\longrightarrow $ 3ª linha \newline
+
+$$
+  \setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 1 & 1 & 1 & 0 & 0 \\
+  0 & -1 & 2 & -2 & 0 & 0 \\
+  0 & 1 & 3 & -2 & 0 & 1 \\
+  \end{array}
+\right]
+$$
+
+\subsubsection*{2ª Eliminação}
+-1x2ª linha  $\longrightarrow $ 2ª linha \newline
+
+$$
+  \setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 1 & 1 & 1 & 0 & 0 \\
+  0 & 1 & -2 & 2 & -1 & 0 \\
+  0 & 1 & 3 & -2 & 0 & 1 \\
+  \end{array}
+\right]
+$$
+
+-1x2ª linha + 1ª linha $\longrightarrow $ 1ª linha \newline
+-1x2ª linha + 3ª linha $\longrightarrow $ 3ª linha \newline
+
+$$
+\setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 0 & 3 & -1 & 1 & 0 \\
+  0 & 1 & -2 & 2 & -1 & 0 \\
+  0 & 0 & 5 & -4 & 1 & 1 \\
+  \end{array}
+\right]
+$$
+
+\subsubsection*{3ª Eliminação}
+
+$\frac{1}{5} \times 3ª$ª linha
+
+$$
+  \setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 0 & 3 & -1 & 1 & 0 \\
+  0 & 1 & -2 & 2 & -1 & 0 \\
+  0 & 0 & 1 & -\frac{4}{5} & \frac{1}{5} & \frac{1}{5} \\
+  \end{array}
+\right]
+$$
+
+-3x3ª linha + 1ª linha $\longrightarrow $ 1ª linha \newline
+2x3ª linha + 2ª linha $\longrightarrow $ 2ª linha \newline
+
+$$
+  \setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 0 & 0 & \frac{7}{5} & \frac{2}{5}  & -\frac{3}{5}  \\
+  0 & 1 & 0 & \frac{2}{5}  & -\frac{3}{5}  & \frac{2}{5}  \\
+  0 & 0 & 1 & -\frac{4}{5} & \frac{1}{5} & \frac{1}{5} \\
+  \end{array}
+\right]
+$$
+
+\subsection{Exemplo}
+Vamos determinar, se existir a inversa da matriz
+$$A = 
+\begin{bmatrix}
+  1 & 2 & 3 \\
+  1 & 1 & 2 \\
+  0 & 1 & 1 \\
+\end{bmatrix}$$
+
+Para isso devemos escalonar a matriz aumentada
+
+$$
+[A | I_3] = 
+\setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 2 & 3 & 1 & 0 & 0 \\
+  1 & 1 & 2 & 0 & 1 & 0 \\
+  0 & 1 & 1 & 0 & 0 & 1 \\
+  \end{array}
+\right]
+$$
+
+\subsubsection*{1ª eliminação:}
+-1x1ª linha + 2ª linha $\longrightarrow $ 2ª linha \newline
+
+$$
+[A | I_3] = 
+\setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 2 & 3 & 1 & 0 & 0 \\
+  0 & 1 & 1 & 1 & -1 & 0 \\
+  0 & 1 & 1 & 0 & 0 & 1 \\
+  \end{array}
+\right] 
+$$
+
+\subsubsection*{2ª Eliminação}
+-1x2ª linha $\longrightarrow $ 2ª linha \newline
+
+$$
+[A | I_3] = 
+\setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 2 & 3 & 1 & 0 & 0 \\
+  0 & 1 & 1 & 1 & -1 & 0 \\
+  0 & 1 & 1 & 0 & 0 & 1 \\
+  \end{array}
+\right] 
+$$
+
+-2x2ª linha + 1ª linha $\longrightarrow $ 1ª linha \newline
+-1x2ª linha + 3ª linha $\longrightarrow $ 3ª linha \newline
+
+$$
+[A | I_3] = 
+\setlength{\dashlinegap}{2pt}
+\left[\begin{array}{ccc:ccc}
+  1 & 0 & 1 & -1 & 2 & 0 \\
+  0 & 1 & 1 & 1 & -1 & 0 \\
+  0 & 0 & 0 & -1 & 1 & 1 \\
+  \end{array}
+\right] 
+$$
+
+\end{document}
