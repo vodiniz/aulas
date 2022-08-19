@@ -1,0 +1,255 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{arydshln}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{qtree}
+\usepackage{slashed}
+\usepackage{upgreek}
+\usepackage{xfrac}
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+
+\section{Determinante $A_{(n \times n)}$}
+
+\bigbreak
+$A_{1x1} = [a] \ \ \ \ \ \ det(A) = a$
+\bigbreak
+$A_{2 \times 2} = 
+\begin{bmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22} \\
+\end{bmatrix} \ \ \ \ 
+det(A) = a_{11} \cdot a_{22} - a_{12} \cdot a_{21}$
+
+\bigbreak
+
+$A_{3 \times 3} = 
+\begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\  
+    a_{31} & a_{32} & a_{33} \\  
+
+\end{bmatrix}
+$ \bigbreak
+Cofator $a_{ij} = (-1)^{i + j} \ \cdot \ detÃ_{ij} $
+
+$ã_{21} = (-1)^{2+1} \cdot det
+ \begin{bmatrix}
+    a_{12} & a_{13} \\
+    a_{32} & a_{33} \\
+ \end{bmatrix}$
+\bigbreak
+$det (A) = $ a soma dos produtos dos elementos de uma linha da matriz pelos 
+seus cofatores = $a_{21} \cdot ã_{21} + a_{22} \cdot ã_{22} + a_{23} \cdot ã_{23} +$
+
+
+$B =
+\begin{bmatrix}
+    1 & 2 & 3 \\
+    -1 & 3 & 2 \\
+    2 & 1 & -2 \\
+\end{bmatrix}
+$ \bigbreak
+$ã_{11} = (-1)^{1+1} \cdot det
+\begin{bmatrix}
+    3 & 2 \\
+    1 & -2 \\
+\end{bmatrix}$
+$=-8$ \bigbreak
+$ã_{12} = (-1)^{1+2} \cdot det
+\begin{bmatrix}
+    -1 & 2 \\
+    2 & -2 \\
+\end{bmatrix}$
+$=-[-2] = 2$ \bigbreak
+
+$ã_{13} = (-1)^{1+3} \cdot det
+\begin{bmatrix}
+    -1 & 3 \\
+    2 & 1 \\
+\end{bmatrix}$
+$=-7$
+\bigbreak
+
+$det(B) = 1 \cdot (-8) + 2 \cdot (2) + 3\cdot (-7)$
+
+$= -7$
+
+\bigbreak
+
+$C = \begin{bmatrix}
+    1 & 2 & 3 & 4 \\
+    0 & 0 & 0 & -3 \\
+    -1 & 3 & 2 & 5 \\
+    2 & 1 & -2 & 0 \\
+\end{bmatrix}$
+\bigbreak
+$det C =$ \bigbreak
+$ã_{24} = (-1)^{2+4} \cdot det \begin{bmatrix}
+    1 & 2 & 3 \\
+    -1 & 3 & -2 \\
+    2 & 1 & -2 \\
+\end{bmatrix} = -25$
+
+\bigbreak
+
+$A = \begin{bmatrix}
+    a_{11} & 0 & 0 & 0 \\
+    a_{21} & a_{22} & 0 & 0 \\
+    a_{31} & a_{32} & a_{34} & 0 \\
+    a_{41} & a_{42} & a_{43} & a_{44} \\
+\end{bmatrix}$
+\bigbreak
+$det(A) = a_{11} \cdot ã_{11} = a_{11} \cdot (-1)^{1+1} \cdot det \begin{bmatrix}
+    a_{22} & 0 & 0 \\
+    a_{32} & a_{33} & 0 \\
+    a_{42} & a_{43} & a_{44} \\
+\end{bmatrix}$
+\bigbreak
+$a_{11} \cdot [a_{11} ã_{22}] = a_{11} a_{22} \cdot (-1)^{2+2} det \begin{bmatrix}
+    a_{33} & 0 \\
+    a_{430} & a_{44} \\
+\end{bmatrix} = a_{11}\cdot a_{22}\cdot a_{33}\cdot a_{44}$
+
+\bigbreak
+
+$A = \begin{bmatrix}
+    1 & 2 \\
+    -1 & 0 \\
+\end{bmatrix}
+$ \bigbreak $det A = 2$
+
+$B = \begin{bmatrix}
+    0 & 1 \\
+    2 & 1 \\
+\end{bmatrix}
+$
+\bigbreak $det B = -2$
+
+$A + B = \begin{bmatrix}
+    1 & 3 \\
+    1 & 1 \\
+\end{bmatrix}$
+\bigbreak $det (A + B) = 2$
+\bigbreak $det (A + B) \neq det(A) + det(B)$
+
+\bigbreak
+
+$det \begin{bmatrix}
+    A_1 \\
+    A_2 \\
+    \vdots \\
+    \alpha x + \beta y \\
+    \vdots \\
+    A_n
+\end{bmatrix} = det \begin{bmatrix}
+    A_1 \\
+    \vdots \\
+    \alpha x \\
+    \vdots \\
+    A_n
+\end{bmatrix} + det \begin{bmatrix}
+    A_1 \\
+    \vdots \\
+    \beta y \\
+    \vdots \\
+    A_n
+\end{bmatrix} = \alpha \cdot det \begin{bmatrix}
+    A_1 \\
+    \vdots \\
+    x\\
+    \vdots \\
+    A_n
+\end{bmatrix} = \beta \cdot det \begin{bmatrix}
+    A_1 \\
+    \vdots \\
+    y\\
+    \vdots \\
+    A_n
+\end{bmatrix}$
+
+\bigbreak
+
+$det = \begin{bmatrix}
+    \cos t & \sin t \\
+    2\cos t -3 \sin t & \sin t + 3 \cos t\\
+\end{bmatrix}$
+
+\bigbreak
+ 
+$ = det \begin{bmatrix}
+    \cos t && \sin t \\
+    2\cos t && 2\sin t \\
+\end{bmatrix}
++ det \begin{bmatrix}
+    \cos t && \sin t \\
+    -3\sin t && 3\cos t \\
+\end{bmatrix} = 
+$\bigbreak
+
+$2 \cdot det \begin{bmatrix}
+    \cos t && \sin t \\
+    \cos t && \sin t \\
+\end{bmatrix}
++ 3\cdot det\begin{bmatrix}
+    \cos t && \sin t \\
+    -\sin t && \cos t \\
+\end{bmatrix} 
+= 2\cdot 0 + 3 \cdot 1 = 3
+$
+
+
+$A = \begin{bmatrix}
+    1 & 2 \\
+    -1 & 0 \\
+\end{bmatrix}
+$ \bigbreak $det A = 2$
+\bigbreak
+
+$B = \begin{bmatrix}
+    0 & 1 \\
+    2 & 1 \\
+\end{bmatrix}
+$
+\bigbreak $det B = -2$
+
+$A \cdot B = \begin{bmatrix}
+    4 & 3 \\
+    0 & -1 \\
+\end{bmatrix}
+$
+
+\bigbreak
+
+$det ( A \cdot B ) = -4 = det(A) \cdot det(B)$
+
+\bigbreak
+
+$A^t  = \begin{bmatrix}
+    1 & -1 \\
+    2 & 0 \\
+\end{bmatrix}
+$
+\bigbreak
+$det (A^t) = 2$
+\bigbreak
+$detA = det(A^t)$
+
+
+
+
+
+\end{document}
