@@ -21,8 +21,12 @@ int main(void){
 
             verified = 1;
             
-            } else {
+            } else if ((x % 2 != 0) || (y % 2 != 0)) {
+                printf("Apenas número pares são aceitos.\n");
+            } else if ((x <= 0) || (y <= 0)){
                 printf("Apenas números positivos são aceitos.\n");
+            } else {
+                printf("x deve ser menor do que y.\n");
             }
 
 
@@ -33,31 +37,21 @@ int main(void){
 
     for ( int line = 0 ; line < (y - x) / 2; line ++){
 
-        int space, astherisc;
+        int space, asterisk;
 
         space = ((y - x) - 2 * line) / 2 - 1; 
-        astherisc = x + 2 * line - 1;
+        asterisk = x + 2 * line - 1;
 
 
         for (int i = 0; i < space; i++){
-            //printf("%d", i);
             printf(" ");
         }
 
-        for (int i = 0 ; i < astherisc; i++){
+        for (int i = 0 ; i < asterisk; i++){
             printf("*");
         }
-        
-        for (int i = 0; i < space; i++){
-            printf(" ");
-        }
-
         printf("\n");
     }
-
-
-
-
 
 
     return 0;
