@@ -40,7 +40,7 @@ int main(void){
         int space, asterisk;
 
         space = ((y - x) - 2 * line) / 2 - 1; 
-        asterisk = x + 2 * line - 1;
+        asterisk = x + 2 * line;
 
 
         for (int i = 0; i < space; i++){
