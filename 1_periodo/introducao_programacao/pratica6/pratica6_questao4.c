@@ -27,7 +27,6 @@ double calculate_pi( int n){
 
 
     for (int i = 1; i < n; i++){
-        /* code */
 
         if (subtract){
         s -= 1/(pow(x,3));
