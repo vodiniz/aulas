@@ -23,8 +23,6 @@ int main(void){
     return 0;
 }
 
-
-
 void move_vector( int vec[], int n){
 
     for (int i = 0; i < n; i++){
@@ -41,7 +39,6 @@ void move_vector( int vec[], int n){
         
         }
     }
-
     return;
 }
 

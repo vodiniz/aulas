@@ -18,8 +18,6 @@ int main(void){
     return 0;
 }
 
-
-
 void calculate_temperature(float temp []){
 
     int below = 0, above = 0;

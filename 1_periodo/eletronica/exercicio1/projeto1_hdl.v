@@ -1,4 +1,4 @@
-module V1(a, b, c, d, x);
+module V1 (a, b, c, d, x);
 
     input a, b, c, d;
     output x;
@@ -7,7 +7,7 @@ module V1(a, b, c, d, x);
 
 endmodule
 
-module V2(a, b, c, d, y);
+module V2 (a, b, c, d, y);
 
     input a, b, c, d;
     output y;
@@ -16,7 +16,7 @@ module V2(a, b, c, d, y);
     
 endmodule
 
-module V3(a, b, c, d, z);
+module V3 (a, b, c, d, z);
 
     input a, b, c, d;
     output z;
@@ -24,9 +24,6 @@ module V3(a, b, c, d, z);
     assign z = a & b;
     
 endmodule
-
-
-
 
 module top;
     reg a, b, c, d;
@@ -50,22 +47,17 @@ module top;
         #16 $finish;
         end
         
+    V1 velocity1 (.a(a), .b(b), .c(c), .d(d), .x(x));
+    V2 velocity2 (.a(a), .b(b), .c(c), .d(d), .y(y));
+    V3 velocity3 (.a(a), .b(b), .c(c), .d(d), .z(z));
 
-
-
-    V1 velocity1( .a(a), .b(b), .c(c), .d(d), .x(x));
-    V2 velocity2( .a(a), .b(b), .c(c), .d(d), .y(y));
-    V3 velocity3( .a(a), .b(b), .c(c), .d(d), .z(z));
-
-        
     initial
         begin
-        $dumpfile("test.dump");
-        $dumpvars(0, a, b , c, d);
+        $dumpfile ("test.dump");
+        $dumpvars (0, a, b , c, d);
         $dumpon;
-        $display("T \t a \t b \t c \t d \t x \t y \t z");
-        $monitor("%0d \t %b \t %b \t %b \t %b \t %b \t %b \t %b", $time, a, b, c, d, x, y, z);
+        $display ("T \t A \t B \t C \t D \t X \t Y \t Z");
+        $monitor ("%0d \t %b \t %b \t %b \t %b \t %b \t %b \t %b", $time, a, b, c, d, x, y, z);
         end
         
 endmodule
-

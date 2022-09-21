@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-
 int get_last_name_index(char str[]);
 int get_letter_count(char str[]);
 void remove_new_line(char word[]);
-
 
 int main(){
 
     char str[70];
     
-
     printf("Digite o nome completo: ");
     fgets(str, 70, stdin);
     remove_new_line(str);
@@ -25,7 +22,6 @@ int main(){
     }
     printf(", ");
 
-    
     for(int i = 0; i < last_name_index; i++){
         printf("%c",str[i]);
     }
@@ -35,12 +31,8 @@ int main(){
     printf("Total de letras: %d\n", letters);
     printf("Total de letras do último sobrenome: %d\n", letters - last_name_index + 2);
 
-
-
-
     return 0;
 }
-
 
 int get_last_name_index(char str[]){
 
@@ -49,7 +41,6 @@ int get_last_name_index(char str[]){
             return i + 1;
         }
     }
-
     return 0;
 }
 
@@ -61,12 +52,10 @@ int get_letter_count(char str[]){
             letter_count++;
         }
     }
-
     return letter_count;
 }
 
 void remove_new_line(char word[]){
-
     int size = strlen(word);
 
     for(int i = 0; i < size; i++){
@@ -74,5 +63,4 @@ void remove_new_line(char word[]){
             word[i] = '\0';
         }
     }
-
 }
