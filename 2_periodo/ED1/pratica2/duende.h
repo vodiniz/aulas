@@ -1,8 +1,8 @@
 # ifndef duende_h
 # define duende_h
 
-typedef struct /* PREENCHER AQUI */ Duende;
-typedef struct /* PREENCHER AQUI */ Time;
+typedef struct duende Duende;
+typedef struct time Time;
 typedef enum { NAO=0, SIM } ESCALADO;
 
 // Manter como especificado
