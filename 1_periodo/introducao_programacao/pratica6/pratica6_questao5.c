@@ -66,6 +66,7 @@ int validate_second_digit(long cpf){
     }
 
     if ((sum * 10 % 11) == last_digit){
+        printf("%d\n", sum * 10 % 11);
         return 1;
     } else if ((sum * 10 % 11) == 10 && last_digit == 0){
         return 1;

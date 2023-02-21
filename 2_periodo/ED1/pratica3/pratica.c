@@ -3,6 +3,21 @@
 #include "dtime.h"
 
 int main() {
+
+
+
+
+    //Especifique no main em forma de comentário, qual a ordem de complexidade das funções: escalarTimes eproximoMaisVelho.
+
+
+    //ordem de complexidade das funções:
+    //Ordem proximoMaisVelho => 3n ( 3 comparações no programa )
+    //Ordem => 3n ( 3 comparações no programa )
+
+
+
+
+
     int qtdDuendes, qtdTimes;
     Duende *duendes;
     Time *times;

@@ -47,14 +47,14 @@ void lerDuendes(Duende *duendes, int n) {
 }
 
 
-// Manter como especificado
+// Manter como especificado 
 int proximoMaisVelho(Duende *duendes, int n) {
     /* Pega o próximo duende mais velho que ainda nao foi escalado */
     int index = -1;
     int mais_velho = 0;
     int ordenado = 0;
 
-    for (int i =0; i < n; i++){
+    for (int i = 0; i < n; i++){
 
         if (duendes[i].escalado == SIM){
             ordenado++;
