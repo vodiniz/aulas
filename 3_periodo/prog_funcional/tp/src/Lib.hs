@@ -60,7 +60,7 @@ replaceColor from to element
     | otherwise = element
 
 replace :: Color -> Color -> [Color] -> [Color]
--- fmap :: Functor [] => (Color -> Color) -> [Color] -> [Color],
+-- fmap :: Functor [] => (Color -> Color) -> [Color] -> [Color]
 replace from to list = fmap (\x -> replaceColor from to x) list
 
 
