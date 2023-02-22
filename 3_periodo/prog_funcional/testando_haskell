@@ -1,0 +1,6 @@
+como testar haskell
+
+ghci
+:l Lib.hs
+
+chamar funcoes e dale

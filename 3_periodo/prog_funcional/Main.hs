@@ -1,8 +1,9 @@
-module Lib where
+module Main where
 
 import Data.Maybe
+import Control.Monad
 
-{- 
+{-
 Para todos os exercícios, você pode criar funções
 auxiliares se achar conveniente. Não se esqueça de dar
 nome aos parâmetros que for utilizar.
@@ -19,8 +20,8 @@ c1 :: Color
 c1 = Yellow
 
 {-
-Por mera questão visual, definiremos que a forma 
-de apresentação delas se dará pela primeira letra da cor, 
+Por mera questão visual, definiremos que a forma
+de apresentação delas se dará pela primeira letra da cor,
 em maiúsculo. Red será "R", Green será "G", e assim por diante.
 
 Exercício 1: Termine a instância de Show abaixo.
@@ -31,7 +32,7 @@ instance Show Color where
     show Red    = "R"
     show Green  = "G"
     show Blue   = "B"
-    show Yellow = "Y" 
+    show Yellow = "Y"
 
 {-
 Considere o seguinte sinônimo de tipo
@@ -44,61 +45,59 @@ type Board = [[Color]]
 
 -- Exemplo de tabuleiro
 t1 :: Board
-t1 = [[Red, Blue, Blue, Green], [Yellow, Red], [Blue, Green, Red]]
+t1 = [[Red, Blue, Blue, Green],
+      [Yellow, Red],
+      [Blue, Green, Red]]
 
 {-
 Exercício 2: Implemente a seguinte função
 que deve trocar todas as ocorrências da primeira
-cor no tabuleiro pela segunda cor, mantendo todas 
+cor no tabuleiro pela segunda cor, mantendo todas
 as outras cores inalteradas.
 -}
 
-
-replaceColor :: Color -> Color -> Color -> Color
-replaceColor from to element
-    | element == from = to
-    | otherwise = element
-
-replace :: Color -> Color -> [Color] -> [Color]
--- fmap :: Functor [] => (Color -> Color) -> [Color] -> [Color],
-replace from to list = fmap (\x -> replaceColor from to x) list
-
-
-
 fill :: Color -> Color -> Board -> Board
--- fmap :: Functor [] => ([Color] -> [Color]) -> [[Color]] -> [[Color]]
--- removed board from arguments
-fill from to board = fmap (replace from to) board
+fill from to = map (map replace)
+  where
+    replace x | x == from = to
+              | otherwise = x
 
-    
 {-
-Exercício 3: Implemente a seguinte função que deve 
+Exercício 3: Implemente a seguinte função que deve
 retornar o número de ocorrências de uma cor no tabuleiro.
 -}
 
 countColor :: Color -> Board -> Int
-countColor = undefined
+countColor color board = sum $ map count board
+  where
+    count [] = 0
+    count (x:xs) | x == color = 1 + count xs
+                 | otherwise  = count xs
 
 {-
-Exercício 4: Implemente a seguinte função que deve 
-converter uma letra na cor correspondente. Estaremos 
+Exercício 4: Implemente a seguinte função que deve
+converter uma letra na cor correspondente. Estaremos
 considerando a possibilidade do caractere informado
 não representar uma cor.
 -}
 
 readColor :: Char -> Maybe Color
-readColor = undefined
+readColor 'R' = Just Red
+readColor 'G' = Just Green
+readColor 'B' = Just Blue
+readColor 'Y' = Just Yellow
+readColor _   = Nothing
 
 {-
-Exercício 5: Implemente a seguinte função que deve 
-converter uma sequência de caracteres numa lista de 
+Exercício 5: Implemente a seguinte função que deve
+converter uma sequência de caracteres numa lista de
 possíveis cores correspondentes.
 -}
 
 readColors :: String -> [Maybe Color]
-readColors = undefined
+readColors = map readColor
 
--- readColors "BBHYGB" ~= [Just B, Just B, Nothing, Just Y, Just G, Just B] 
+-- readColors "BBHYGB" ~= [Just B, Just B, Nothing, Just Y, Just G, Just B]
 
 {-
 Exercício 6: Implemente a seguinte função que deve converter
@@ -107,9 +106,9 @@ cores.
 -}
 
 readColorLines :: [String] -> [[Maybe Color]]
-readColorLines = undefined
+readColorLines = map readColors
 
-{- 
+{-
     readColorLines ["BBHYGB", "JYG", "BKKGBGY"]
        ~= [[Just B,Just B,Nothing,Just Y,Just G,Just B],
            [Nothing,Just Y,Just G],
@@ -123,7 +122,7 @@ eliminando todas as cores invalidadas no processo.
 -}
 
 createBoard :: [[Maybe Color]] -> Board
-createBoard = undefined
+createBoard = map catMaybes
 
 {-
     createBoard (readColorLines ["BBHYGB", "JYG", "BKKGBGY"])
@@ -133,12 +132,14 @@ createBoard = undefined
 -}
 
 {-
-Exercício 8: Implemente a seguinte função que lê um número n 
+Exercício 8: Implemente a seguinte função que lê um número n
 digitado do teclado e depois lê n linhas, retornando-as em uma lista.
 -}
 
 readLines :: IO [String]
-readLines = undefined
+readLines = do
+  count <- getLine
+  replicateM (read count) getLine
 
 {-
 Exercício 9: Implemente a seguinte função que mostra na tela
@@ -147,8 +148,29 @@ cuja contagem for zero.
 -}
 
 printCounters :: Board -> IO ()
-printCounters = undefined
+printCounters board = mapM_ display [Red, Green, Blue, Yellow]
+  where
+    display color = do
+      putStrLn $ show color ++ ": " ++ show (countColor color board)
 
-{- 
-Exercício 10: Vá ao arquivo Main.hs e faça o que se pede.
+{-
+EXERCÍCIO 10
+Combine tudo que fez neste projeto e implemente
+a seguinte função que deve:
+  1. Ler um número n do usuário.
+  2. Ler n linhas.
+  3. Mostrar o tabuleiro correspondente,
+     que ignorará os caracteres inválidos.
+  4. Mostrar a contagem das cores no tabuleiro.
+  5. Mostrar o tabuleiro correspondente trocando todos
+     os vermelhos por amarelos.
 -}
+
+main :: IO ()
+main = do
+  input <- readLines
+  let board = createBoard $ readColorLines input
+  print board
+  printCounters board
+  let new_board = fill Red Yellow board
+  print new_board
