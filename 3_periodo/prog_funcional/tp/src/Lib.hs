@@ -2,6 +2,7 @@ module Lib where
 
 import Data.Maybe
 
+
 {- 
 Para todos os exercícios, você pode criar funções
 auxiliares se achar conveniente. Não se esqueça de dar
@@ -19,24 +20,19 @@ c1 :: Color
 c1 = Yellow
 
 {-
-Por mera questão visual, definiremos que a forma 
-de apresentação delas se dará pela primeira letra da cor, 
-em maiúsculo. Red será "R", Green será "G", e assim por diante.
+Red será "R", Green será "G", e assim por diante.
 
-Exercício 1: Termine a instância de Show abaixo.
-Não se esqueça de apagar o undefined.
+Exercício 1: Instância de Show.
 -}
 
 instance Show Color where
     show Red    = "R"
     show Green  = "G"
     show Blue   = "B"
-    show Yellow = "Y" 
+    show Yellow = "Y"
 
 {-
-Considere o seguinte sinônimo de tipo
-que representa uma espécie de tabuleiro
-de cores. Este "tabuleiro" não necessariamente é
+Tabuleiro de cores. Este "tabuleiro" não necessariamente é
 uma matriz quadrada.
 -}
 
@@ -47,8 +43,9 @@ t1 :: Board
 t1 = [[Red, Blue, Blue, Green], [Yellow, Red], [Blue, Green, Red]]
 
 {-
-Exercício 2: Implemente a seguinte função
-que deve trocar todas as ocorrências da primeira
+Exercício 2: 
+
+Trocar todas as ocorrências da primeira
 cor no tabuleiro pela segunda cor, mantendo todas 
 as outras cores inalteradas.
 -}
@@ -61,42 +58,58 @@ replaceColor from to element
 
 replace :: Color -> Color -> [Color] -> [Color]
 -- fmap :: Functor [] => (Color -> Color) -> [Color] -> [Color]
-replace from to list = fmap (\x -> replaceColor from to x) list
+replace from to = fmap (replaceColor from to)
 
 
 
 fill :: Color -> Color -> Board -> Board
--- fmap :: Functor [] => ([Color] -> [Color]) -> [[Color]] -> [[Color]]
 -- removed board from arguments
-fill from to board = fmap (replace from to) board
+fill from to = fmap (replace from to)
 
-    
+
 {-
 Exercício 3: Implemente a seguinte função que deve 
 retornar o número de ocorrências de uma cor no tabuleiro.
 -}
 
+--Conta as cores em uma lista simples de cor
+count :: Color -> [Color] -> Int
+count x xs = length (filter ( == x) xs)
+
+
+-- Conta as cores em uma lista simples e retorna uma lista 
+-- com o numero de cores que aparece em cada linha do tabuleiro
+countColorList :: Color -> Board -> [Int]
+countColorList color = fmap (count color)
+
+
+-- soma a ocorrencia das cores em cada linha
 countColor :: Color -> Board -> Int
-countColor = undefined
+countColor color board = sum (countColorList color board)
 
 {-
-Exercício 4: Implemente a seguinte função que deve 
-converter uma letra na cor correspondente. Estaremos 
+Exercício 4: 
+Converter uma letra na cor correspondente. Estaremos 
 considerando a possibilidade do caractere informado
 não representar uma cor.
 -}
 
 readColor :: Char -> Maybe Color
-readColor = undefined
+readColor color
+    | color =='R' = Just Red
+    | color =='G' = Just Green
+    | color =='B' = Just Blue
+    | color =='Y' = Just Yellow
+    | otherwise = Nothing
 
 {-
-Exercício 5: Implemente a seguinte função que deve 
-converter uma sequência de caracteres numa lista de 
+Exercício 5: 
+Converter uma sequência de caracteres numa lista de 
 possíveis cores correspondentes.
 -}
 
 readColors :: String -> [Maybe Color]
-readColors = undefined
+readColors = fmap readColor
 
 -- readColors "BBHYGB" ~= [Just B, Just B, Nothing, Just Y, Just G, Just B] 
 
@@ -106,8 +119,9 @@ uma lista de sequências de caracteres num tabuleiro de possíveis
 cores.
 -}
 
+
 readColorLines :: [String] -> [[Maybe Color]]
-readColorLines = undefined
+readColorLines = fmap readColors
 
 {- 
     readColorLines ["BBHYGB", "JYG", "BKKGBGY"]
@@ -117,13 +131,22 @@ readColorLines = undefined
 -}
 
 {-
-Exercício 7: Implemente a seguinte função que deve converter
-um tabuleiro de possíveis cores em um tabuleiro comum, simplesmente
+Exercício 7: 
+Converter um tabuleiro de possíveis cores
+ em um tabuleiro comum, simplesmente
 eliminando todas as cores invalidadas no processo.
 -}
 
+-- maybeColorToList :: Maybe Color -> [Color]
+-- maybeColorToList = maybeToList
+maybeListToList :: [Maybe Color] -> [Color]
+--  concat . fmap maybeToList
+maybeListToList = catMaybes
+
+
+
 createBoard :: [[Maybe Color]] -> Board
-createBoard = undefined
+createBoard = fmap maybeListToList
 
 {-
     createBoard (readColorLines ["BBHYGB", "JYG", "BKKGBGY"])
@@ -133,21 +156,52 @@ createBoard = undefined
 -}
 
 {-
-Exercício 8: Implemente a seguinte função que lê um número n 
-digitado do teclado e depois lê n linhas, retornando-as em uma lista.
+Exercício 8:
+lê um número n digitado do teclado e depois lê n linhas
+, retornando-as em uma lista.
 -}
 
+
+--fmap de readColorLines fazendo um SUM ao mesmo tempo para retornar uma lista de string
+
+readNLines :: Int -> IO [String]
+readNLines n
+    | n <= 0 = return []
+    | otherwise = do
+        x <- getLine
+        xs <- readNLines (n-1)
+        return (x:xs)
+
+
+
 readLines :: IO [String]
-readLines = undefined
+readLines = do
+    line <- getLine
+    let numLines = read line :: Int
+    readNLines numLines
 
 {-
-Exercício 9: Implemente a seguinte função que mostra na tela
-a contagem de cada uma das cores, exibindo inclusive as cores
+Exercício 9: mostra na tela a contagem de cada uma das cores,
+ exibindo inclusive as cores
 cuja contagem for zero.
 -}
 
 printCounters :: Board -> IO ()
-printCounters = undefined
+printCounters board = do
+    
+    putStr $ show Red ++" : "
+    print $ countColor Red board
+
+    putStr $ show Green ++ " : "
+    print $ countColor Green board
+
+    putStr $ show Blue ++ " : "
+    print $ countColor Blue board
+
+    putStr $ show Yellow ++ " : "
+    print $ countColor Yellow board
+    
+
 
 {- 
 Exercício 10: Vá ao arquivo Main.hs e faça o que se pede.

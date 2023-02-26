@@ -2,6 +2,7 @@ module Main (main) where
 
 import Lib
 
+
 {-
 Faça os 9 exercícios no arquivo Lib.hs e depois volte à este.
 
@@ -17,9 +18,23 @@ a seguinte função que deve:
      os vermelhos por amarelos.
 -}
 
-main :: IO ()
-main = undefined
 
+
+main :: IO ()
+main = do
+   input <- readLines
+   let maybe_board = readColorLines input
+   let board = createBoard maybe_board
+   print board
+
+
+{-
+EXERCÍCIO OPCIONAL
+Incremente esta aplicação com funcionalidades adicionais. 
+Seja criativo e mantenha a boa qualidade do seu código 
+e do estilo funcional. Escreva as funções no Lib.hs
+e adapte a interação com o usuário no Main.hs.
+-}
 
 {-
 EXERCÍCIO OPCIONAL
