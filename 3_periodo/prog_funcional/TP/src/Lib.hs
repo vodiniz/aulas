@@ -36,6 +36,10 @@ Tabuleiro de cores. Este "tabuleiro" não necessariamente é
 uma matriz quadrada.
 -}
 
+
+
+--IMPLEMENTAR INSTANCIA DE SHOW PARA O BOARD
+
 type Board = [[Color]]
 
 -- Exemplo de tabuleiro
@@ -185,6 +189,9 @@ Exercício 9: mostra na tela a contagem de cada uma das cores,
  exibindo inclusive as cores
 cuja contagem for zero.
 -}
+
+
+--FILL PODE SER UMA COR DINAMICA ESCOLHIDA PELO USUARIO
 
 printCounters :: Board -> IO ()
 printCounters board = do
